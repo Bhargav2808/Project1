@@ -1,0 +1,38 @@
+<div class="form">
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName">
+      <div  *ngIf= "!reactiveForm.get('firstName').valid && reactiveForm.get('firstName').touched   ">
+        <span style="color: red;">First name is required...</span>
+      </div>
+
+
+<br>
+<br>
+   
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName">
+       <div  *ngIf= "!reactiveForm.get('lastName').valid && reactiveForm.get('lastName').touched   ">
+        <span style="color: red;">last name is required...</span>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+      <label for="contactNumber">Contact Number:</label>
+      <input type="text" class="form-control" id="contactNumber" name="contactNumber" formControlName="contactNo">
+      <div  *ngIf= "reactiveForm.get('contactNo').errors?.['required'] && reactiveForm.get('contactNo').touched">
+        <span style="color: red;">contact number is required...</span>
+      </div>
+      <div  *ngIf= "reactiveForm.get('contactNo').errors?.['invalidContact'] && !reactiveForm.get('contactNo').errors?.['required'] && reactiveForm.get('contactNo').touched">
+        <span style="color: red;">contact number should be 10 digits</span>
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-sucess"></button>
+  </form>
+</div>
